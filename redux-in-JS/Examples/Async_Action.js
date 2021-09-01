@@ -1,3 +1,9 @@
+const redux = require("redux");
+const thunkMiddleware = require("redux-thunk");
+const createStore = redux.createStore;
+const applyMiddileware = redux.applyMiddleware;
+const axios = require("axios");
+
 const initialState = {
   loading: false,
   users: [],
@@ -21,7 +27,7 @@ const fetchUsersSuccess = (users) => {
   };
 };
 
-const fetchUsersFailure = error => {
+const fetchUsersFailure = (error) => {
   return {
     type: FETCH_USERS_FAILURE,
     payload: error,
@@ -51,3 +57,5 @@ const reducer = (state = initialState, action) => {
       };
   }
 };
+
+const store = createStore(reducer, applyMiddileware(thunkMiddleware));
