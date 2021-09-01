@@ -9,8 +9,22 @@ function buyCake() {
   };
 }
 
+// function buyIceCream() {
+//   return {
+//     type: "BUY_ICECREAM",
+//     info: "First redux action",
+//   };
+// }
+
+const buyIceCream = () => {
+  return { type: "BUY_ICECREAM" };
+};
+
+
+
 const initialState = {
   numOfCake: 10,
+  numOfIceCreams: 20,
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +33,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         numOfCake: state.numOfCake - 1,
+      };
+    case "BUY_ICECREAM":
+      return {
+        ...state,
+        numOfIceCreams: state.numOfIceCreams - 1,
       };
     default:
       return state;
@@ -31,7 +50,9 @@ console.log('initialState:', store.getState());
 const unsubcribe=store.subscribe(() => console.log('updatedState:', store.getState()))
 store.dispatch(buyCake())
 store.dispatch(buyCake())
-store.dispatch(buyCake())
 store.dispatch(buyCake());
+store.dispatch(buyCake())
+store.dispatch(buyIceCream())
+store.dispatch(buyIceCream())
 
 unsubcribe()
