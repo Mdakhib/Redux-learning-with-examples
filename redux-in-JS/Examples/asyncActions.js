@@ -1,7 +1,7 @@
 const redux = require("redux");
-const thunkMiddleware = require("redux-thunk");
 const createStore = redux.createStore;
 const applyMiddileware = redux.applyMiddleware;
+const thunkMiddleware = require("redux-thunk").default;
 const axios = require("axios");
 
 const initialState = {
@@ -18,7 +18,7 @@ const fetchUsersRequest = () => {
   return {
     type: FETCH_USERS_REQUEST,
   };
-};
+  };
 
 const fetchUsersSuccess = (users) => {
   return {
@@ -35,6 +35,7 @@ const fetchUsersFailure = (error) => {
 };
 
 const reducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case FETCH_USERS_REQUEST:
       return {
@@ -58,4 +59,25 @@ const reducer = (state = initialState, action) => {
   }
 };
 
+const fetchUser = () => {
+  return function (dispatch) {
+    dispatch(fetchUsersRequest());
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
+      .then((response) => {
+        // response.data is the array of users
+        const users = response.data.map((user) => user.id);
+        dispatch(fetchUsersSuccess(users));
+      })
+      .catch((error) => {
+        // error.message is the error description
+        dispatch(fetchUsersFailure(error.message));
+      });
+  };
+};
+
 const store = createStore(reducer, applyMiddileware(thunkMiddleware));
+store.subscribe(() => {
+  console.log(store.getState())
+});
+store.dispatch(fetchUser());
