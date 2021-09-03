@@ -4,7 +4,8 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 // import HookCakeContainer from './components/HookCakeContainer';
 // import IceCreamContainer from './components/IceCreamContainer';
-import CounterContainer from './components/CounterContainer';
+// import CounterContainer from './components/CounterContainer';
+import CakeContainerwithPayload from './components/CakeContainerwithPayload';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         {/* by using connect HOF's */}
         {/* <CakeContainer /> */}
         {/* <IceCreamContainer /> */}
-        <CounterContainer />
+        {/* <CounterContainer /> */}
+        <CakeContainerwithPayload />
         {/* ------------------------------------------------------------------------- */}
         {/* by using hook useSelector and useDispatch */}
         {/* <HookCakeContainer /> */}
