@@ -5,7 +5,8 @@ import store from "./redux/store";
 // import HookCakeContainer from './components/HookCakeContainer';
 // import IceCreamContainer from './components/IceCreamContainer';
 // import CounterContainer from './components/CounterContainer';
-import CakeContainerwithPayload from './components/CakeContainerwithPayload';
+// import CakeContainerwithPayload from './components/CakeContainerwithPayload';
+import ItemContainer from './components/ItemContainer';
 
 function App() {
   return (
@@ -15,11 +16,16 @@ function App() {
         {/* <CakeContainer /> */}
         {/* <IceCreamContainer /> */}
         {/* <CounterContainer /> */}
-        <CakeContainerwithPayload />
+        {/* ------------------------------------------------------------------------- */}
+        {/* by using connect HOF's along with action payload */}
+        {/* <CakeContainerwithPayload /> */}
         {/* ------------------------------------------------------------------------- */}
         {/* by using hook useSelector and useDispatch */}
         {/* <HookCakeContainer /> */}
         {/* ------------------------------------------------------------------------- */}
+        {/* using ownProps in mapStateToProps */}
+        <ItemContainer propsPassingByChildComponentToParentAsOwnProps />
+        <ItemContainer  />
       </div>
     </Provider>
   );
