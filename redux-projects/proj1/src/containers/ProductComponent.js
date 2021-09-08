@@ -1,12 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function ProductComponent() {
-    const products = useSelector((state) => state.allProducts.products);
-    const renderList = products.map((product) => {
-      const { id, title, image, price, category } = product;
-      return (
-        <div className="four column wide" key={id}>
+  const products = useSelector((state) => state.allProducts.products);
+  const renderList = products.map((product) => {
+    const { id, title, image, price, category } = product;
+    return (
+      <div className="four column wide" key={id}>
+        <Link to={`/product/${id}`}>
           <div className="ui link cards">
             <div className="card">
               <div className="image">
@@ -19,10 +21,11 @@ function ProductComponent() {
               </div>
             </div>
           </div>
-        </div>
-      );
-    });
-    return <>{renderList}</>;
+        </Link>
+      </div>
+    );
+  });
+  return <>{renderList}</>;
 }
 
 export default ProductComponent;
