@@ -12,7 +12,7 @@ function ProductDetail() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.selectedproduct);
   const { image, title, price, category, description } = product;
-  console.log(product);
+  // console.log(product)
 
   const fetchProductDetail = async () => {
     const response = await axios
